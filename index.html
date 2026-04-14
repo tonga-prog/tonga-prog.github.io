@@ -292,10 +292,14 @@
       opacity: 0;
       transition: opacity 0.3s;
     }
-    .project-card:hover::before { opacity: 1; }
+    .project-card:hover::before { 
+      opacity: 1; 
+      pointer-events: none;
+    }
     .project-card:hover {
       border-color: rgba(124,106,247,0.4);
       transform: translateY(-3px);
+      cursor: pointer;
     }
 
     .project-main { display: flex; flex-direction: column; gap: 1rem; }
