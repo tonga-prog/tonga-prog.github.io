@@ -1,28 +1,38 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gastón Astudillo — Full Stack Developer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap"
+    rel="stylesheet" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg:        #0a0a0c;
-      --surface:   #111116;
-      --surface2:  #18181f;
-      --border:    rgba(255,255,255,0.07);
-      --accent:    #7c6af7;
-      --accent2:   #c084fc;
-      --text:      #e8e8f0;
-      --muted:     #6b6b80;
-      --dim:       #3a3a50;
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    html { scroll-behavior: smooth; }
+    :root {
+      --bg: #0a0a0c;
+      --surface: #111116;
+      --border: rgba(255, 255, 255, 0.07);
+      --accent: #7c6af7;
+      --accent2: #c084fc;
+      --text: #e8e8f0;
+      --muted: #6b6b80;
+      --dim: #3a3a50;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       background: var(--bg);
@@ -33,7 +43,6 @@
       overflow-x: hidden;
     }
 
-    /* ── NOISE OVERLAY ── */
     body::before {
       content: '';
       position: fixed;
@@ -44,7 +53,6 @@
       z-index: 999;
     }
 
-    /* ── GRID LINES ── */
     body::after {
       content: '';
       position: fixed;
@@ -58,7 +66,6 @@
       opacity: 0.5;
     }
 
-    /* ── GLOW ORBS ── */
     .orb {
       position: fixed;
       border-radius: 50%;
@@ -66,18 +73,23 @@
       pointer-events: none;
       z-index: 0;
     }
+
     .orb-1 {
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(124,106,247,0.15) 0%, transparent 70%);
-      top: -200px; left: -200px;
-    }
-    .orb-2 {
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(192,132,252,0.1) 0%, transparent 70%);
-      bottom: -100px; right: -100px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(124, 106, 247, 0.15) 0%, transparent 70%);
+      top: -200px;
+      left: -200px;
     }
 
-    /* ── LAYOUT ── */
+    .orb-2 {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(192, 132, 252, 0.1) 0%, transparent 70%);
+      bottom: -100px;
+      right: -100px;
+    }
+
     .container {
       max-width: 1000px;
       margin: 0 auto;
@@ -86,21 +98,25 @@
       z-index: 1;
     }
 
-    /* ── NAV ── */
+    /* NAV */
     nav {
       position: fixed;
-      top: 0; left: 0; right: 0;
+      top: 0;
+      left: 0;
+      right: 0;
       z-index: 100;
       padding: 1.25rem 0;
       border-bottom: 1px solid var(--border);
-      background: rgba(10,10,12,0.8);
+      background: rgba(10, 10, 12, 0.8);
       backdrop-filter: blur(16px);
     }
+
     nav .container {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
+
     .nav-logo {
       font-family: 'Syne', sans-serif;
       font-weight: 800;
@@ -109,14 +125,23 @@
       text-decoration: none;
       letter-spacing: -0.01em;
     }
+
     .nav-logo span {
       color: var(--accent);
     }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
     .nav-links {
       display: flex;
       gap: 2rem;
       list-style: none;
     }
+
     .nav-links a {
       color: var(--muted);
       text-decoration: none;
@@ -125,19 +150,60 @@
       text-transform: uppercase;
       transition: color 0.2s;
     }
-    .nav-links a:hover { color: var(--text); }
 
-    /* ── HERO ── */
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    /* LANG TOGGLE */
+    .lang-toggle {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--dim);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .lang-btn {
+      padding: 0.3rem 0.7rem;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      transition: all 0.15s;
+      font-family: 'DM Mono', monospace;
+    }
+
+    .lang-btn.active {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .lang-btn:not(.active):hover {
+      color: var(--text);
+    }
+
+    .lang-sep {
+      width: 1px;
+      height: 14px;
+      background: var(--dim);
+    }
+
+    /* HERO */
     .hero {
       min-height: 100vh;
       display: flex;
       align-items: center;
       padding: 8rem 0 4rem;
     }
+
     .hero-inner {
       display: grid;
       gap: 2rem;
     }
+
     .hero-tag {
       display: inline-flex;
       align-items: center;
@@ -146,23 +212,34 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--accent);
-      border: 1px solid rgba(124,106,247,0.3);
+      border: 1px solid rgba(124, 106, 247, 0.3);
       padding: 0.35rem 0.85rem;
       border-radius: 2px;
       width: fit-content;
       animation: fadeUp 0.6s ease both;
     }
+
     .hero-tag::before {
       content: '';
-      width: 6px; height: 6px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
       background: var(--accent);
       animation: pulse 2s ease infinite;
     }
+
     @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0.3
+      }
     }
+
     .hero-name {
       font-family: 'Syne', sans-serif;
       font-weight: 800;
@@ -171,19 +248,23 @@
       letter-spacing: -0.03em;
       animation: fadeUp 0.6s 0.1s ease both;
     }
+
     .hero-name .highlight {
       -webkit-text-stroke: 1px var(--accent);
       color: transparent;
     }
+
     .hero-role {
       font-size: 14px;
       color: var(--muted);
       letter-spacing: 0.04em;
       animation: fadeUp 0.6s 0.2s ease both;
     }
+
     .hero-role span {
       color: var(--accent2);
     }
+
     .hero-desc {
       max-width: 520px;
       color: var(--muted);
@@ -191,12 +272,14 @@
       line-height: 1.8;
       animation: fadeUp 0.6s 0.3s ease both;
     }
+
     .hero-cta {
       display: flex;
       gap: 1rem;
       flex-wrap: wrap;
       animation: fadeUp 0.6s 0.4s ease both;
     }
+
     .btn {
       display: inline-flex;
       align-items: center;
@@ -211,19 +294,23 @@
       transition: all 0.2s;
       border: none;
     }
+
     .btn-primary {
       background: var(--accent);
       color: #fff;
     }
+
     .btn-primary:hover {
       background: #9580ff;
       transform: translateY(-2px);
     }
+
     .btn-outline {
       background: transparent;
       color: var(--text);
       border: 1px solid var(--dim);
     }
+
     .btn-outline:hover {
       border-color: var(--accent);
       color: var(--accent);
@@ -231,38 +318,49 @@
     }
 
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    /* ── SECTION ── */
+    /* SECTION */
     section {
       padding: 6rem 0;
     }
+
     .section-header {
       display: flex;
       align-items: center;
       gap: 1.5rem;
       margin-bottom: 4rem;
     }
+
     .section-num {
       font-size: 11px;
       color: var(--accent);
       letter-spacing: 0.1em;
     }
+
     .section-title {
       font-family: 'Syne', sans-serif;
       font-weight: 700;
       font-size: 2rem;
       letter-spacing: -0.02em;
     }
+
     .section-line {
       flex: 1;
       height: 1px;
       background: var(--border);
     }
 
-    /* ── PROJECTS ── */
+    /* PROJECTS */
     .projects-grid {
       display: grid;
       gap: 1.5px;
@@ -281,51 +379,110 @@
       transition: border-color 0.3s, transform 0.3s;
       animation: fadeUp 0.5s ease both;
     }
-    .project-card:nth-child(1) { animation-delay: 0.1s; }
-    .project-card:nth-child(2) { animation-delay: 0.2s; }
+
+    .project-card:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+
+    .project-card:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .project-card:nth-child(3) {
+      animation-delay: 0.3s;
+    }
 
     .project-card::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(124,106,247,0.05) 0%, transparent 60%);
+      background: linear-gradient(135deg, rgba(124, 106, 247, 0.05) 0%, transparent 60%);
       opacity: 0;
       transition: opacity 0.3s;
     }
-    .project-card:hover::before { 
-      opacity: 1; 
-      pointer-events: none;
-    }
-    .project-card:hover {
-      border-color: rgba(124,106,247,0.4);
-      transform: translateY(-3px);
-      
+
+    .project-card:hover::before {
+      opacity: 1;
     }
 
-    .project-main { display: flex; flex-direction: column; gap: 1rem; }
+    .project-card:hover {
+      border-color: rgba(124, 106, 247, 0.4);
+      transform: translateY(-3px);
+    }
+
+    /* WIP variant */
+    .project-card.wip {
+      opacity: 0.72;
+    }
+
+    .project-card.wip:hover {
+      border-color: rgba(255, 255, 255, 0.12);
+      transform: translateY(-2px);
+    }
+
+    .project-card.wip::before {
+      background: linear-gradient(135deg, rgba(80, 80, 110, 0.04) 0%, transparent 60%);
+    }
+
+    .wip-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid var(--dim);
+      padding: 0.25rem 0.6rem;
+      border-radius: 2px;
+      width: fit-content;
+    }
+
+    .wip-badge::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--muted);
+      animation: pulse 2.5s ease infinite;
+    }
+
+    .project-main {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
 
     .project-num {
       font-size: 11px;
       color: var(--dim);
       letter-spacing: 0.1em;
     }
+
     .project-name {
       font-family: 'Syne', sans-serif;
       font-weight: 700;
       font-size: 1.5rem;
       letter-spacing: -0.02em;
     }
+
     .project-desc {
       color: var(--muted);
       font-size: 13px;
       line-height: 1.8;
       max-width: 560px;
     }
+
+    .project-desc p+p {
+      margin-top: 0.75rem;
+    }
+
     .project-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
     }
+
     .tag {
       font-size: 11px;
       padding: 0.3rem 0.7rem;
@@ -334,6 +491,7 @@
       color: var(--muted);
       letter-spacing: 0.06em;
     }
+
     .project-links {
       display: flex;
       flex-direction: column;
@@ -341,6 +499,7 @@
       align-items: flex-end;
       justify-content: flex-start;
     }
+
     .project-link {
       display: inline-flex;
       align-items: center;
@@ -349,22 +508,32 @@
       color: var(--accent);
       text-decoration: none;
       letter-spacing: 0.04em;
-      border: 1px solid rgba(124,106,247,0.25);
+      border: 1px solid rgba(124, 106, 247, 0.25);
       padding: 0.4rem 0.9rem;
       border-radius: 2px;
       transition: all 0.2s;
       white-space: nowrap;
     }
+
     .project-link:hover {
-      background: rgba(124,106,247,0.1);
+      background: rgba(124, 106, 247, 0.1);
       border-color: var(--accent);
-      cursor: pointer;
-    }
-    .project-link svg {
-      width: 12px; height: 12px; flex-shrink: 0;
     }
 
-    /* ── CONTACT ── */
+    .project-link svg {
+      width: 12px;
+      height: 12px;
+      flex-shrink: 0;
+    }
+
+    .project-link.disabled {
+      color: var(--dim);
+      border-color: rgba(58, 58, 80, 0.4);
+      pointer-events: none;
+      cursor: default;
+    }
+
+    /* CONTACT */
     .contact-block {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -378,13 +547,18 @@
       position: relative;
       overflow: hidden;
     }
+
     .contact-block::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(90deg, rgba(124,106,247,0.07) 0%, transparent 60%);
+      background: linear-gradient(90deg, rgba(124, 106, 247, 0.07) 0%, transparent 60%);
     }
-    .contact-text { position: relative; }
+
+    .contact-text {
+      position: relative;
+    }
+
     .contact-title {
       font-family: 'Syne', sans-serif;
       font-weight: 700;
@@ -392,10 +566,12 @@
       letter-spacing: -0.02em;
       margin-bottom: 0.5rem;
     }
+
     .contact-sub {
       color: var(--muted);
       font-size: 13px;
     }
+
     .contact-email {
       position: relative;
       display: inline-flex;
@@ -409,16 +585,18 @@
       border-radius: 2px;
       transition: all 0.2s;
     }
+
     .contact-email:hover {
       border-color: var(--accent);
       color: var(--accent);
     }
 
-    /* ── FOOTER ── */
+    /* FOOTER */
     footer {
       border-top: 1px solid var(--border);
       padding: 2rem 0;
     }
+
     footer .container {
       display: flex;
       justify-content: space-between;
@@ -426,165 +604,343 @@
       flex-wrap: wrap;
       gap: 1rem;
     }
+
     .footer-copy {
       font-size: 12px;
       color: var(--dim);
       letter-spacing: 0.04em;
     }
+
     .footer-built {
       font-size: 12px;
       color: var(--dim);
     }
 
-    /* ── SCROLLBAR ── */
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--dim); border-radius: 2px; }
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
 
-    /* ── RESPONSIVE ── */
+    ::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--dim);
+      border-radius: 2px;
+    }
+
     @media (max-width: 640px) {
-      .project-card { grid-template-columns: 1fr; }
-      .project-links { flex-direction: row; align-items: flex-start; }
-      .nav-links { display: none; }
-      .contact-block { flex-direction: column; }
+      .project-card {
+        grid-template-columns: 1fr;
+      }
+
+      .project-links {
+        flex-direction: row;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .contact-block {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
+
 <body>
 
-<div class="orb orb-1"></div>
-<div class="orb orb-2"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
 
-<!-- NAV -->
-<nav>
-  <div class="container">
-    <a href="#" class="nav-logo">gastonastudillo<span>.</span>dev</a>
-    <ul class="nav-links">
-      <li><a href="#proyectos">Proyectos</a></li>
-      <li><a href="#contacto">Contacto</a></li>
-    </ul>
-  </div>
-</nav>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="container">
-    <div class="hero-inner">
-      <div class="hero-tag">Disponible para proyectos</div>
-      <h1 class="hero-name">
-        Gastón<br><span class="highlight">Astudillo</span>
-      </h1>
-      <p class="hero-role">
-        Full Stack Developer <span>·</span> Frontend &amp; Backend
-      </p>
-      <p class="hero-desc">
-        Construyo interfaces y sistemas que funcionan. Me enfoco en escribir código limpio, con atención al detalle y experiencias que se sienten bien de usar.
-      </p>
-      <div class="hero-cta">
-        <a href="#proyectos" class="btn btn-primary">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-          Ver proyectos
-        </a>
-        <a href="#contacto" class="btn btn-outline">
-          Contacto
-        </a>
+  <!-- NAV -->
+  <nav>
+    <div class="container">
+      <a href="#" class="nav-logo">gastonastudillo<span>.</span>dev</a>
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="#proyectos" data-i18n="nav-projects">Proyectos</a></li>
+          <li><a href="#contacto" data-i18n="nav-contact">Contacto</a></li>
+        </ul>
+        <div class="lang-toggle">
+          <button class="lang-btn active" data-lang="es">ES</button>
+          <div class="lang-sep"></div>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </nav>
 
-<!-- PROJECTS -->
-<section id="proyectos">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-num">01</span>
-      <h2 class="section-title">Proyectos</h2>
-      <div class="section-line"></div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-tag" data-i18n="hero-tag">Disponible para proyectos</div>
+        <h1 class="hero-name">Gastón<br><span class="highlight">Astudillo</span></h1>
+        <p class="hero-role">Full Stack Developer <span>&middot;</span> Frontend &amp; Backend</p>
+        <p class="hero-desc" data-i18n="hero-desc">
+          Construyo interfaces y sistemas que funcionan. Me enfoco en escribir código limpio, con atención al detalle y
+          experiencias que se sienten bien de usar.
+        </p>
+        <div class="hero-cta">
+          <a href="#proyectos" class="btn btn-primary">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 6h18M3 12h18M3 18h18" />
+            </svg>
+            <span data-i18n="hero-cta-projects">Ver proyectos</span>
+          </a>
+          <a href="#contacto" class="btn btn-outline" data-i18n="hero-cta-contact">Contacto</a>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="projects-grid">
+  <!-- PROJECTS -->
+  <section id="proyectos">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <h2 class="section-title" data-i18n="section-projects">Proyectos</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="projects-grid">
 
-      <!-- Proyecto 1 -->
-      <div class="project-card">
-        <div class="project-main">
-          <span class="project-num">001</span>
-          <h3 class="project-name">De la A a la Z</h3>
-          <p class="project-desc">
-            Página y biblioteca oficial en honor a Elsa Bornemann, una de las escritoras de literatura infantil más queridas de Argentina. Un espacio dedicado a preservar y difundir su obra.
-          </p>
-          <div class="project-tags">
-            <span class="tag">Web</span>
-            <span class="tag">Biblioteca digital</span>
-            <span class="tag">Cultura</span>
+        <!-- 001 LIBERTADOR TURISMO (WIP) -->
+        <div class="project-card wip">
+          <div class="project-main">
+            <span class="project-num">001</span>
+            <div class="wip-badge" data-i18n="wip-badge">En desarrollo</div>
+            <h3 class="project-name">Libertador Turismo</h3>
+            <div class="project-desc">
+              <p data-i18n="libertador-p1">Sitio web para una empresa local de turismo de Mendoza, Argentina. La
+                plataforma muestra las experiencias que ofrece la empresa con fotos, carrusel de imágenes y animaciones
+                personalizadas. Incluirá un sistema de comentarios y valoraciones de usuarios.</p>
+              <p data-i18n="libertador-p2">El backend está construido con Node.js, Express y PostgreSQL gestionado
+                mediante Prisma ORM. El frontend usa React con Tailwind CSS y TypeScript como capa de tipado. La
+                arquitectura separa claramente cliente y servidor, con un contrato de tipos compartido que garantiza
+                consistencia entre ambos extremos.</p>
+            </div>
+            <div class="project-tags">
+              <span class="tag">React</span>
+              <span class="tag">TypeScript</span>
+              <span class="tag">Node.js</span>
+              <span class="tag">Express</span>
+              <span class="tag">PostgreSQL</span>
+              <span class="tag">Prisma</span>
+              <span class="tag">Tailwind CSS</span>
+            </div>
+          </div>
+          <div class="project-links">
+            <span class="project-link disabled">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+              <span data-i18n="link-soon">Próximamente</span>
+            </span>
+            <span class="project-link disabled">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" />
+                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+              </svg>
+              <span data-i18n="link-private">Repo privado</span>
+            </span>
           </div>
         </div>
-        <div class="project-links">
-          <a href="https://www.elsabornemann.com.ar" target="_blank" rel="noopener" class="project-link">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            Visitar sitio
-          </a>
-        </div>
-      </div>
 
-      <!-- Proyecto 2 -->
-      <div class="project-card">
-        <div class="project-main">
-          <span class="project-num">002</span>
-          <h3 class="project-name">Vetra</h3>
-          <p class="project-desc">
-            Proyecto escolar de e-commerce full stack. Desarrollo completo con frontend en React y API REST propia en el backend. Arquitectura cliente-servidor desacoplada.
-          </p>
-          <div class="project-tags">
-            <span class="tag">E-commerce</span>
-            <span class="tag">React</span>
-            <span class="tag">REST API</span>
-            <span class="tag">Full Stack</span>
+        <!-- 002 ELSA BORNEMANN -->
+        <div class="project-card">
+          <div class="project-main">
+            <span class="project-num">002</span>
+            <h3 class="project-name">De la A a la Z</h3>
+            <div class="project-desc">
+              <p data-i18n="bornemann-p1">Página y biblioteca oficial en honor a Elsa Bornemann, una de las escritoras
+                de literatura infantil más queridas de Argentina. Un espacio dedicado a preservar y difundir su obra.
+              </p>
+              <p data-i18n="bornemann-p2">El backend fue desarrollado con Node.js y Express siguiendo una arquitectura
+                modular con middlewares de seguridad, autenticación JWT y conexión a Cloudinary para la gestión de
+                imágenes. El frontend está hecho en React con CSS3 puro e integra EditorJS con un bloque personalizado
+                para la carga de imágenes con un formato específico, permitiendo al administrador gestionar el contenido
+                del catálogo de libros.</p>
+            </div>
+            <div class="project-tags">
+              <span class="tag">React</span>
+              <span class="tag">CSS3</span>
+              <span class="tag">Node.js</span>
+              <span class="tag">Express</span>
+              <span class="tag">MongoDB</span>
+              <span class="tag">JWT</span>
+              <span class="tag">Cloudinary</span>
+              <span class="tag">EditorJS</span>
+            </div>
+          </div>
+          <div class="project-links">
+            <a href="https://www.elsabornemann.com.ar" target="_blank" rel="noopener" class="project-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+              <span data-i18n="link-visit">Visitar sitio</span>
+
+            </a>
+            <span class="project-link disabled">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" />
+                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+              </svg>
+              <span data-i18n="link-private">Repo privado</span>
+            </span>
           </div>
         </div>
-        <div class="project-links">
-          <a href="https://github.com/Tongaa01/Vetra" target="_blank" rel="noopener" class="project-link">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
-            Frontend
-          </a>
-          <a href="https://github.com/emisinatra/VetraApi" target="_blank" rel="noopener" class="project-link">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
-            Backend
-          </a>
+
+        <!-- 003 VETRA -->
+        <div class="project-card">
+          <div class="project-main">
+            <span class="project-num">003</span>
+            <h3 class="project-name">Vetra</h3>
+            <div class="project-desc">
+              <p data-i18n="vetra-p1">Proyecto escolar de e-commerce full stack con arquitectura cliente-servidor
+                desacoplada. Me encargué principalmente del frontend: interfaz completa en React con CSS, carrito de
+                compras con exclusión de stock en tiempo real mientras los productos están reservados, e integración con
+                MercadoPago como pasarela de pago.</p>
+              <p data-i18n="vetra-p2">El backend fue desarrollado por el equipo en Java, con autenticación JWT, base de
+                datos MySQL con manejo completo de inventario y lógica de exclusión de productos durante el proceso de
+                compra.</p>
+            </div>
+            <div class="project-tags">
+              <span class="tag">React</span>
+              <span class="tag">CSS</span>
+              <span class="tag">Java</span>
+              <span class="tag">MySQL</span>
+              <span class="tag">JWT</span>
+              <span class="tag">MercadoPago</span>
+            </div>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/Tongaa01/Vetra" target="_blank" rel="noopener" class="project-link">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" />
+              </svg>
+              Frontend
+            </a>
+            <a href="https://github.com/emisinatra/VetraApi" target="_blank" rel="noopener" class="project-link">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" />
+              </svg>
+              Backend
+            </a>
+          </div>
         </div>
+
       </div>
-
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- CONTACT -->
-<section id="contacto">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-num">02</span>
-      <h2 class="section-title">Contacto</h2>
-      <div class="section-line"></div>
-    </div>
-    <div class="contact-block">
-      <div class="contact-text">
-        <h3 class="contact-title">Trabajemos juntos</h3>
-        <p class="contact-sub">¿Tenés un proyecto en mente? Escribime.</p>
+  <!-- CONTACT -->
+  <section id="contacto">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <h2 class="section-title" data-i18n="section-contact">Contacto</h2>
+        <div class="section-line"></div>
       </div>
-      <a href="mailto:gaston.astudillo.prog@gmail.com" class="contact-email">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
-        gaston.astudillo.prog@gmail.com
-      </a>
+      <div class="contact-block">
+        <div class="contact-text">
+          <h3 class="contact-title" data-i18n="contact-title">Trabajemos juntos</h3>
+          <p class="contact-sub" data-i18n="contact-sub">¿Tenés un proyecto en mente? Escribime.</p>
+        </div>
+        <a href="mailto:gaston.astudillo.prog@gmail.com" class="contact-email">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="2" y="4" width="20" height="16" rx="2" />
+            <path d="m2 7 10 7 10-7" />
+          </svg>
+          gaston.astudillo.prog@gmail.com
+        </a>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="container">
-    <span class="footer-copy">© 2026 Gastón Astudillo</span>
-    <span class="footer-built">Hecho con HTML · CSS · JS</span>
-  </div>
-</footer>
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <span class="footer-copy">© 2026 Gastón Astudillo</span>
+      <span class="footer-built" data-i18n="footer-built">Hecho con HTML · CSS · JS</span>
+    </div>
+  </footer>
+
+  <script>
+    const i18n = {
+      es: {
+        "nav-projects": "Proyectos",
+        "nav-contact": "Contacto",
+        "hero-tag": "Disponible para proyectos",
+        "hero-desc": "Construyo interfaces y sistemas que funcionan. Me enfoco en escribir código limpio, con atención al detalle y experiencias que se sienten bien de usar.",
+        "hero-cta-projects": "Ver proyectos",
+        "hero-cta-contact": "Contacto",
+        "section-projects": "Proyectos",
+        "section-contact": "Contacto",
+        "wip-badge": "En desarrollo",
+        "link-soon": "Próximamente",
+        "link-private": "Repo privado",
+        "link-visit": "Visitar sitio",
+        "libertador-p1": "Sitio web para una empresa local de turismo de Mendoza, Argentina. La plataforma muestra las experiencias que ofrece la empresa con fotos, carrusel de imágenes y animaciones personalizadas. Incluirá un sistema de comentarios y valoraciones de usuarios.",
+        "libertador-p2": "El backend está construido con Node.js, Express y PostgreSQL gestionado mediante Prisma ORM. El frontend usa React con Tailwind CSS y TypeScript como capa de tipado. La arquitectura separa claramente cliente y servidor, con un contrato de tipos compartido que garantiza consistencia entre ambos extremos.",
+        "bornemann-p1": "Página y biblioteca oficial en honor a Elsa Bornemann, una de las escritoras de literatura infantil más queridas de Argentina. Un espacio dedicado a preservar y difundir su obra.",
+        "bornemann-p2": "El backend fue desarrollado con Node.js y Express siguiendo una arquitectura modular con middlewares de seguridad, autenticación JWT y conexión a Cloudinary para la gestión de imágenes. El frontend está hecho en React con CSS3 puro e integra EditorJS con un bloque personalizado para la carga de imágenes con un formato específico, permitiendo al administrador gestionar el contenido del catálogo de libros.",
+        "vetra-p1": "Proyecto escolar de e-commerce full stack con arquitectura cliente-servidor desacoplada. Me encargué principalmente del frontend: interfaz completa en React con CSS, carrito de compras con exclusión de stock en tiempo real mientras los productos están reservados, e integración con MercadoPago como pasarela de pago.",
+        "vetra-p2": "El backend fue desarrollado por el equipo en Java, con autenticación JWT, base de datos MySQL con manejo completo de inventario y lógica de exclusión de productos durante el proceso de compra.",
+        "contact-title": "Trabajemos juntos",
+        "contact-sub": "¿Tenés un proyecto en mente? Escribime.",
+        "footer-built": "Hecho con HTML · CSS · JS"
+      },
+      en: {
+        "nav-projects": "Projects",
+        "nav-contact": "Contact",
+        "hero-tag": "Available for projects",
+        "hero-desc": "I build interfaces and systems that work. I focus on writing clean code, with attention to detail and experiences that feel good to use.",
+        "hero-cta-projects": "View projects",
+        "hero-cta-contact": "Contact",
+        "section-projects": "Projects",
+        "section-contact": "Contact",
+        "wip-badge": "In development",
+        "link-soon": "Coming soon",
+        "link-private": "Private repo",
+        "link-visit": "Visit site",
+        "libertador-p1": "Website for a local tourism company based in Mendoza, Argentina. The platform showcases the experiences offered by the company with photos, image carousels and custom animations. It will also include a user comments and ratings system.",
+        "libertador-p2": "The backend is built with Node.js, Express and PostgreSQL managed via Prisma ORM. The frontend uses React with Tailwind CSS and TypeScript as the typing layer. The architecture cleanly separates client and server, with a shared type contract ensuring consistency across both ends.",
+        "bornemann-p1": "Official website and library honoring Elsa Bornemann, one of Argentina's most beloved children's literature authors. A space dedicated to preserving and sharing her work.",
+        "bornemann-p2": "The backend was built with Node.js and Express following a modular architecture with security middlewares, JWT authentication and Cloudinary integration for image management. The frontend is built in React with pure CSS3 and integrates EditorJS with a custom block for specific-format image uploads, allowing the admin to manage the book catalog content.",
+        "vetra-p1": "Full stack e-commerce school project with a decoupled client-server architecture. I was primarily responsible for the frontend: a complete React + CSS interface, a shopping cart with real-time stock exclusion while products are reserved, and MercadoPago integration as the payment gateway.",
+        "vetra-p2": "The backend was developed by the team in Java, featuring JWT authentication, MySQL database with full inventory management and product exclusion logic during the checkout process.",
+        "contact-title": "Let's work together",
+        "contact-sub": "Got a project in mind? Reach out.",
+        "footer-built": "Built with HTML · CSS · JS"
+      }
+    };
+
+    function applyLang(lang) {
+      const t = i18n[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key] !== undefined) el.textContent = t[key];
+      });
+      document.documentElement.lang = lang;
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => applyLang(btn.dataset.lang));
+    });
+  </script>
 
 </body>
+
 </html>
